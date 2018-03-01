@@ -1,8 +1,8 @@
 'use strict';
-//eslint-next-line-disable no-unused vars//
 /*global Bookmark*/
-
+//eslint-next-line-disable no-unused vars//
 const store = (function () {
+
 
   const addBookmark = function (item) {
     this.bookmarks.push(item);
@@ -20,7 +20,7 @@ const store = (function () {
   };
   return{
     bookmarks:[],
-    addingBookmark: false,
+    addingBookmark: true,
 
     addBookmark,
     findById,

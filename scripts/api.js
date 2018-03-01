@@ -9,13 +9,14 @@ const api = (function() {
     $.getJSON(BASE_URL, callback);
   };
 
-  const createItem = function(name, callback){
-    let newItem = JSON.stringify({name});
+  const createItem = function(title, url, callback){
+    let newBookmark = JSON.stringify({title, url});
     $.ajax({
+      title:'',
       url: BASE_URL,
       method: 'POST',
       contentType: 'application/json',
-      data: newItem,
+      data: newBookmark,
       success: (callback) => {
         console.log(callback);
       }
@@ -36,4 +37,4 @@ const api = (function() {
     createItem,
     deleteItem,
   };
-});
+}());
