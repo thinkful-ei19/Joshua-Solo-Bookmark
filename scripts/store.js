@@ -1,28 +1,26 @@
 'use strict';
 //eslint-next-line-disable no-unused vars//
-/*global*/
+/*global Bookmark*/
 
 const store = (function () {
 
-  const addBookmark = function () {
-
+  const addBookmark = function (item) {
+    this.bookmarks.push(item);
   };
 
-  const findById = function () {
-
+  const findById = function (id) {
+    return this.bookmarks.find(item=>item.id === id);
   };
 
-  const findAndDeleteBookmark = function () {
-
+  const findAndDeleteBookmark = function (id) {
+    this.bookmarks = this.bookmarks.filter(item => item.id !== id);
   };
 
   const toggleRatingFilter = function () {
-
   };
   return{
     bookmarks:[],
-    adding: false,
-    expanded: false,
+    addingBookmark: false,
 
     addBookmark,
     findById,
