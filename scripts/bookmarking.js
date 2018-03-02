@@ -94,7 +94,7 @@ function createBookmarkForm(){
 function handleBookmarkFormSubmit(){
 $('.js-form-submit').click(function(event){
     event.preventDefault();
-    
+
     console.log('submit button clicked');
     store.addBookmark();
 });

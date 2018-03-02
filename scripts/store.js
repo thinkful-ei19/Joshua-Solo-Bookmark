@@ -4,6 +4,10 @@
 const store = (function () {
 
 
+  const toggleBookmarkForm = function (){
+    this.addingBookmark = !this.addingBookmark;
+  };
+
   const addBookmark = function (item) {
     this.bookmarks.push(item);
   };
@@ -22,6 +26,7 @@ const store = (function () {
     bookmarks:[],
     addingBookmark: true,
 
+    toggleBookmarkForm,
     addBookmark,
     findById,
     findAndDeleteBookmark,
