@@ -19,7 +19,7 @@ function generateBookmarkItem(bookmark){
               <input class="star star-1" id="star-1" type="radio" name="star"/>
               <label class="star star-1" for="star-1">1</label>
           </form>
-          <button type="submit">Submit Bookmark</button>
+          <button class ="js-form-submit" type="submit">Submit Bookmark</button>
       </form>
   </li>`;
 }
@@ -54,7 +54,7 @@ function render(){
               <input class="star star-1" id="star-1" type="radio" name="star"/>
               <label class="star star-1" for="star-1">1</label>
           </form>
-          <button type="submit">Submit Bookmark</button>
+          <button class="js-form-submit" type="submit">Submit Bookmark</button>
       </form>`;
     return bookmarkForm;
   } else {
@@ -84,12 +84,22 @@ function createBookmarkForm(){
                 <input class="star star-1" id="star-1" type="radio" name="star"/>
                 <label class="star star-1" for="star-1">1</label>
             </form>
-            <button type="submit">Submit Bookmark</button>
+            <button class="js-form-submit" type="submit">Submit Bookmark</button>
         </form>`; 
     store.addBookmark(bookmarkForm);
     render();
   });
 }
+
+function handleBookmarkFormSubmit(){
+$('.js-form-submit').click(function(event){
+    event.preventDefault();
+    
+    console.log('submit button clicked');
+    store.addBookmark();
+});
+}
 console.log('code running');
 createBookmarkForm();
 render();
+handleBookmarkFormSubmit();
