@@ -1,18 +1,17 @@
 'use strict';
 //eslint-next-line-disable no-unused-vars//
-/*global*/
+/*globals $*/
 
 const api = (function() {
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/jos/bookmarks';
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/josh/bookmarks';
 
   const getItems = function (callback){
     $.getJSON(BASE_URL, callback);
   };
 
-  const createItem = function(title, url, callback){
-    let newBookmark = JSON.stringify({title, url});
+  const createItem = function(data, callback){
+    let newBookmark = JSON.stringify(data);
     $.ajax({
-      title:'',
       url: BASE_URL,
       method: 'POST',
       contentType: 'application/json',

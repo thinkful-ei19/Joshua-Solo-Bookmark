@@ -1,11 +1,22 @@
 
 .generator-body{
     border: 2px solid black;
-    width: 500px;
-    height: 300px;
-    padding: 25px;
-    margin: auto;
+    width: 95%;
+    height: 100%;
+    margin-right:10px;
+    margin-left:10px;
     background-color: grey;
+    padding: 10px;
+}
+.hidden{
+    display: none;
+}
+
+.bookmark-element{
+    border: 1px solid black;
+    display:inline-block;
+    width: 90%;
+    background-color: white;
 }
 
 .results-container{
@@ -15,12 +26,13 @@
     display: inline-block;
 }
 
-.bookmark-form{
+#bookmark-form{
     width:85%;
     background-color:white;
     border: 1px solid black;
     display: inline-block;
 }
+
 .rating-stars{
     background-color:white;
     display: inline-block;
