@@ -32,7 +32,7 @@ const bookmark = (function(){
   };
 
   const generateBookmarkForm = function(){
-    if(!store.addingBookmarks){
+    if(!store.addingBookmark){
       return '<button class="create-bookmark-button">Add Bookmark</button>';
     } else {
       return `<form id="bookmark-form">
@@ -98,10 +98,12 @@ const bookmark = (function(){
       const rating = $('input[name=star]:checked').val();
       $('input[name=star]:checked').val('');
       const data = {title, url, desc, rating};
+      store.toggleBookmarkForm();
+      render();
       api.createItem(data, ()=>{
         //store.addingBookmark = false;
         store.addBookmark(data);
-        this.render();
+        //this.render();
       });
     });
   };
