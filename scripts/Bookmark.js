@@ -10,20 +10,28 @@ const bookmark = (function(){
 
   const generateBookmarkItem= function(bookmark){   
     let information = 'hidden';
+    let informationButtonText = 'Show';
+
+    if(bookmark.expanded){
+      information = '';
+      informationButtonText = 'Hide';
+    }
 
     return` <div class="bookmark-element">
     <li bookmark-id=${bookmark.id}> 
-        <div class-bookmark-title">
+        <div class="bookmark-title">
             <p>${bookmark.title}</p>
-            <div class="bookmark-information ${information}">
-                <a href="${bookmark.url}" class="bookmark-link">Go To Website</a>
-                <p class="bookmark-description">${bookmark.desc}</p>
-            </div>
         </div>
         <div class="bookmark-rating">
-          <p>${bookmark.rating}</p>
-          </li>
-          </div>`;
+            <p>${bookmark.rating}</p>
+        </div>
+        <div class="hidden-information-toggle">
+          <input type="checkbox" class="toggle-information">Show Information
+        </div>
+        <a href="${bookmark.url}" class="bookmark-link hidden">Go To Website</a>
+        <p class="bookmark-description hidden">${bookmark.desc}</p>
+    </li>
+  </div>`;
   };
 
   const generateBookmarkForm = function(){
@@ -50,10 +58,6 @@ const bookmark = (function(){
   </form>`;}
   };
 
-  /*function generateBookmarkString(){
-  const bookmarks = store.bookmarks.map((bookmark)=>generateBookmarkItem(bookmark));
-  return bookmarks.join('');
-}*/
   //need a decorate response function
 
   const render= function(){
@@ -64,7 +68,7 @@ const bookmark = (function(){
     //console.log('render ran');
     const formHTML = generateBookmarkForm();
     $('.bookmark-form-target').html(formHTML); 
-    console.log('render ran');
+    //console.log('render ran');
   };
   
   const handleBookmarkForm = function(){
@@ -100,10 +104,25 @@ const bookmark = (function(){
     });
   };
 
+  const expandListElement = function(){
+    $('.hidden-information-toggle').on('change', '.toggle-information', function(){
+      event.preventDefault();
+      console.log('checkbox clicked');
+      if ($(this).is(':checked')=== true){
+        $(this).parent().siblings('a').removeClass('hidden');
+        $(this).parent().siblings('p').removeClass('hidden');
+      }
+      if ($(this).is(':checked')===false){
+        $(this).parent().siblings('a').addClass('hidden');
+        $(this).parent().siblings('p').addClass('hidden');
+      }
+    });
+  };
+
   const bindEventListeners = function(){
     handleBookmarkFormSubmit();
     handleBookmarkForm();
-
+    expandListElement();
   };
   return{
     getIdFromParent,
