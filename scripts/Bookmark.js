@@ -30,6 +30,8 @@ const bookmark = (function(){
         </div>
         <a href="${bookmark.url}" class="bookmark-link hidden">Go To Website</a>
         <p class="bookmark-description hidden">${bookmark.desc}</p>
+        <div class="delete-button">
+          <button type="button" class="delete">Delete</button>
     </li>
   </div>`;
   };
@@ -119,10 +121,21 @@ const bookmark = (function(){
     });
   };
 
+  const handleDeleteBookmark = function(){
+    $('.delete-button').on('click', '.delete', function(){
+      const id = getIdFromParent(event.currentTarget);
+      api.deleteItem(id, ()=>{
+        store.findAndDeleteBookmark(id);
+        render();
+      });
+    });
+  };
+
   const bindEventListeners = function(){
     handleBookmarkFormSubmit();
     handleBookmarkForm();
     expandListElement();
+    handleDeleteBookmark();
   };
   return{
     getIdFromParent,

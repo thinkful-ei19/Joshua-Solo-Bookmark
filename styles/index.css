@@ -62,6 +62,11 @@
     margin-bottom: 1px;
 }
 
+.delete-button{
+    display: block;
+    float: right;
+}
+
 #bookmark-form{
     width:85%;
     background-color:white;
