@@ -16,6 +16,7 @@ const store = (function () {
     return this.bookmarks.find(item=>item.id === id);
   };*/
 
+
   const findAndDeleteBookmark = function (id) {
     this.bookmarks = this.bookmarks.filter(item => item.id !== id);
   };
@@ -28,6 +29,7 @@ const store = (function () {
 
     toggleBookmarkForm,
     addBookmark,
+    showBookmark,
     //findById,
     findAndDeleteBookmark,
     toggleRatingFilter

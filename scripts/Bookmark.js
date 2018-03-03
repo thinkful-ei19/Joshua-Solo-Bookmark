@@ -62,7 +62,6 @@ const bookmark = (function(){
   //need a decorate response function
 
   const render= function(){
-    //!store.addingBookmark ? $('.bookmark-form-body').addClass('hidden') : $('.bookmark-form-body').removeClass('hidden');
     //generateHTML
     let filteredBookmarks = store.bookmarks;
     const html = filteredBookmarks.map(generateBookmarkItem);
@@ -99,11 +98,10 @@ const bookmark = (function(){
       $('input[name=star]:checked').val('');
       const data = {title, url, desc, rating};
       store.toggleBookmarkForm();
+      $('.bookmark-list').html(data);
       render();
       api.createItem(data, ()=>{
-        //store.addingBookmark = false;
         store.addBookmark(data);
-        //this.render();
       });
     });
   };
