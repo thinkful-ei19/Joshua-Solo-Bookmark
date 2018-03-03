@@ -9,29 +9,23 @@ const bookmark = (function(){
   };
 
   const generateBookmarkItem= function(bookmark){   
-    let information = 'hidden';
-    let informationButtonText = 'Show';
-
-    if(bookmark.expanded){
-      information = '';
-      informationButtonText = 'Hide';
-    }
 
     return` <div class="bookmark-element">
-    <li bookmark-id=${bookmark.id}> 
-        <div class="bookmark-title">
+    <li data-bookmark-id=${bookmark.id}> 
+        <div class="shown-information">
             <p>${bookmark.title}</p>
-        </div>
-        <div class="bookmark-rating">
             <p>${bookmark.rating}</p>
         </div>
         <div class="hidden-information-toggle">
           <input type="checkbox" class="toggle-information">Show Information
         </div>
-        <a href="${bookmark.url}" class="bookmark-link hidden">Go To Website</a>
-        <p class="bookmark-description hidden">${bookmark.desc}</p>
+        <div class="hidden-information hidden">
+          <a href="${bookmark.url}" class="bookmark-link">Go To Website</a>
+          <p class="bookmark-description">${bookmark.desc}</p>
+        </div>
         <div class="delete-button">
           <button type="button" class="delete">Delete</button>
+        </div>
     </li>
   </div>`;
   };
@@ -65,6 +59,7 @@ const bookmark = (function(){
   const render= function(){
     //generateHTML
     let filteredBookmarks = store.bookmarks;
+    console.log(filteredBookmarks);
     const html = filteredBookmarks.map(generateBookmarkItem);
     $('.bookmark-list').html(html);
     //console.log('render ran');
@@ -93,8 +88,8 @@ const bookmark = (function(){
       console.log(title);
       const url = $(event.currentTarget).find('#link').val();
       $(event.currentTarget).find('#link').val('');
-      const desc = $(event.currentTarget).find('#description').val();
-      $(event.currentTarget).find('#description').val('');
+      const desc = $(event.currentTarget).find('#desc').val();
+      $(event.currentTarget).find('#desc').val('');
       const rating = $('input[name=star]:checked').val();
       $('input[name=star]:checked').val('');
       const data = {title, url, desc, rating};
@@ -107,23 +102,25 @@ const bookmark = (function(){
   };
 
   const expandListElement = function(){
-    $('.hidden-information-toggle').on('change', '.toggle-information', function(){
+    $('.bookmark-list').on('change', '.toggle-information', function(){
       event.preventDefault();
       console.log('checkbox clicked');
       if ($(this).is(':checked')=== true){
-        $(this).parent().siblings('a').removeClass('hidden');
-        $(this).parent().siblings('p').removeClass('hidden');
+        $(this).parents('li').find('.hidden-information').removeClass('hidden');
+        $(this).parents('li').find('hidden-information').removeClass('hidden');
       }
       if ($(this).is(':checked')===false){
-        $(this).parent().siblings('a').addClass('hidden');
-        $(this).parent().siblings('p').addClass('hidden');
+        $(this).parents('li').find('.hidden-information').addClass('hidden');
+        $(this).parents('li').find('.hidden-information').addClass('hidden');
       }
     });
   };
 
   const handleDeleteBookmark = function(){
-    $('.delete-button').on('click', '.delete', function(){
+    $('.bookmark-list').on('click', '.delete', function(event){
+      console.log('delete button clicked');
       const id = getIdFromParent(event.currentTarget);
+      console.log(id);
       api.deleteItem(id, ()=>{
         store.findAndDeleteBookmark(id);
         render();

@@ -23,9 +23,7 @@ const store = (function () {
   const toggleRatingFilter = function () {
   };
   return{
-    bookmarks:[{
-      expanded: false
-    }],
+    bookmarks:[],
     addingBookmark: false,
 
     toggleBookmarkForm,
