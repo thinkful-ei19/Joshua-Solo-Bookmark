@@ -1,8 +1,15 @@
 'use strict';
-/*globals bookmark, $*/
+/*globals bookmark, store, api, $*/
 
-$(document).ready(function(){
+function renderPage(){
   bookmark.bindEventListeners();
   bookmark.render();
+
+  api.getItems((bookmarks)=>{
+    bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
+    bookmark.render();
+  });
   console.log('index.js loaded');
-});
+}
+
+$(renderPage);

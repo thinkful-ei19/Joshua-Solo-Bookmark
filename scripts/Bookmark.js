@@ -4,31 +4,26 @@
 
 const bookmark = (function(){
 
+  const getIdFromParent = function(bookmark){
+    return $(bookmark).parents('li').data('bookmark-id');
+  };
+
   const generateBookmarkItem= function(bookmark){   
     let information = 'hidden';
 
-    return` <li bookmark-id=${bookmark.id}>
-    <div class="bookmark-element"> 
+    return` <div class="bookmark-element">
+    <li bookmark-id=${bookmark.id}> 
         <div class-bookmark-title">
             <p>${bookmark.title}</p>
             <div class="bookmark-information ${information}">
                 <a href="${bookmark.url}" class="bookmark-link">Go To Website</a>
-                <p class="bookmark-description">${bookmark.description}</p>
+                <p class="bookmark-description">${bookmark.desc}</p>
             </div>
-          <form class ="rating-stars" action="rating">
-              <input value="5" class="star star-5" id="star-5" type="radio" name="star"/>
-              <label class="star star-5" for="star-5">5</label>
-              <input value="4" class="star star-4" id="star-4" type="radio" name="star"/>
-              <label class="star star-4" for="star-4">4</label>
-              <input value="3" class="star star-3" id="star-3" type="radio" name="star"/>
-              <label class="star star-3" for="star-3">3</label>
-              <input value="2" class="star star-2" id="star-2" type="radio" name="star"/>
-              <label class="star star-2" for="star-2">2</label>
-              <input value="1" class="star star-1" id="star-1" type="radio" name="star"/>
-              <label class="star star-1" for="star-1">1</label>
-          </form>
-      </form>
-  </li>`;
+        </div>
+        <div class="bookmark-rating">
+          <p>${bookmark.rating}</p>
+          </li>
+          </div>`;
   };
 
   const generateBookmarkForm = function(){
@@ -98,7 +93,6 @@ const bookmark = (function(){
       $('input[name=star]:checked').val('');
       const data = {title, url, desc, rating};
       store.toggleBookmarkForm();
-      $('.bookmark-list').html(data);
       render();
       api.createItem(data, ()=>{
         store.addBookmark(data);
@@ -112,6 +106,7 @@ const bookmark = (function(){
 
   };
   return{
+    getIdFromParent,
     generateBookmarkItem,
     render,
     bindEventListeners,

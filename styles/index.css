@@ -5,25 +5,28 @@
     height: 100%;
     margin-right:10px;
     margin-left:10px;
-    background-color: grey;
+    background-color: red;
     padding: 10px;
 }
 .hidden{
     display: none;
 }
 
+.results-container{
+    background-color: black;
+    width: 85%;
+    border: 1px solid white;
+    display: inline-block;
+}
+
 .bookmark-element{
-    border: 1px solid black;
+    border: 1px solid red;
     display:inline-block;
     width: 90%;
     background-color: white;
-}
-
-.results-container{
-    background-color: white;
-    width: 85%;
-    border: 1px solid black;
-    display: inline-block;
+    padding: 10px;
+    list-style-type: none;
+    margin-bottom: 5px;
 }
 
 #bookmark-form{

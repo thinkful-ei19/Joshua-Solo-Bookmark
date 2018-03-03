@@ -7,18 +7,18 @@ const store = (function () {
     this.addingBookmark = !this.addingBookmark;
   };
 
-  const addBookmark = function (item) {
-    this.bookmarks.push(item);
-    toggleBookmarkForm();
+  const addBookmark = function (bookmark) {
+    this.bookmarks.push(bookmark);
+    //toggleBookmarkForm();
   };
- /*use just the guts in findAndUpdate
+  /*use just the guts in findAndUpdate
   const findById = function (id) {
     return this.bookmarks.find(item=>item.id === id);
   };*/
 
 
   const findAndDeleteBookmark = function (id) {
-    this.bookmarks = this.bookmarks.filter(item => item.id !== id);
+    this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
   };
 
   const toggleRatingFilter = function () {
@@ -29,7 +29,6 @@ const store = (function () {
 
     toggleBookmarkForm,
     addBookmark,
-    showBookmark,
     //findById,
     findAndDeleteBookmark,
     toggleRatingFilter
