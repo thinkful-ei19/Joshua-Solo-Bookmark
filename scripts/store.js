@@ -20,11 +20,14 @@ const store = (function () {
     this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
   };
 
-  const toggleRatingFilter = function () {
+  const toggleRatingFilter = function (rating) {
+    rating === 'none' ? this.ratingFilter = null : this.filterRating = rating;
   };
+
   return{
     bookmarks:[],
     addingBookmark: false,
+    ratingFilter: null,
 
     toggleBookmarkForm,
     addBookmark,

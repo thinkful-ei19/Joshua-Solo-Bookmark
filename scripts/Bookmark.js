@@ -39,6 +39,7 @@ const bookmark = (function(){
       <input id="title" type="text" name="title-bar" class="js-title-bar" placeholder="Insert Title Here"/>
       <input id="link" type="text" name="link-bar" class="js-link-bar" placeholder="Insert HyperLink Here"/>
       <input id="description" type="text" name="description-bar" class="js-description-bar" placeholder="Insert Description Here"/>
+        <div class="rating-body">  
           <form>
               <input value="5" class="star star-5" id="star-5" type="radio" name="star"/>
               <label class="star star-5" for="star-5">5</label>
@@ -51,6 +52,7 @@ const bookmark = (function(){
               <input value="1" class="star star-1" id="star-1" type="radio" name="star"/>
               <label class="star star-1" for="star-1">1</label>
           </form>
+        </div>
   </form>`;}
   };
 
@@ -60,6 +62,7 @@ const bookmark = (function(){
     //generateHTML
     let filteredBookmarks = store.bookmarks;
     console.log(filteredBookmarks);
+    if (store.filterRating) filteredBookmarks = filteredBookmarks.filter(bookmark => bookmark.rating >= store.filterRating); 
     const html = filteredBookmarks.map(generateBookmarkItem);
     $('.bookmark-list').html(html);
     //console.log('render ran');
@@ -128,11 +131,21 @@ const bookmark = (function(){
     });
   };
 
+  const handleRatingFilter = function(){
+    $('#rating-dropdown').on('change', function(event){
+      event.preventDefault();
+      const rating = $(event.currentTarget).val();
+      store.toggleRatingFilter(rating);
+      render();
+    });
+  };
+
   const bindEventListeners = function(){
     handleBookmarkFormSubmit();
     handleBookmarkForm();
     expandListElement();
     handleDeleteBookmark();
+    handleRatingFilter();
   };
   return{
     getIdFromParent,
