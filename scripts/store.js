@@ -21,7 +21,7 @@ const store = (function () {
   };
 
   const toggleRatingFilter = function (rating) {
-    rating === 'none' ? this.ratingFilter = null : this.filterRating = rating;
+    rating === 'none' ? this.ratingFilter = null : this.ratingFilter = rating;
   };
 
   return{

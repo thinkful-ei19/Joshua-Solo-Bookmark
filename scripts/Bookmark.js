@@ -26,6 +26,9 @@ const bookmark = (function(){
         <div class="delete-button">
           <button type="button" class="delete">Delete</button>
         </div>
+        <div class="edit-button">
+          <button type"button" class="edit">Edit</button>
+        </div>
     </li>
   </div>`;
   };
@@ -38,7 +41,7 @@ const bookmark = (function(){
       <button class="js-form-submit" type="submit">Submit Bookmark</button>
       <input id="title" type="text" name="title-bar" class="js-title-bar" placeholder="Insert Title Here"/>
       <input id="link" type="text" name="link-bar" class="js-link-bar" placeholder="Insert HyperLink Here"/>
-      <input id="description" type="text" name="description-bar" class="js-description-bar" placeholder="Insert Description Here"/>
+      <input id="desc" type="text" name="description-bar" class="js-description-bar" placeholder="Insert Description Here"/>
         <div class="rating-body">  
           <form>
               <input value="5" class="star star-5" id="star-5" type="radio" name="star"/>
@@ -62,7 +65,7 @@ const bookmark = (function(){
     //generateHTML
     let filteredBookmarks = store.bookmarks;
     console.log(filteredBookmarks);
-    if (store.filterRating) filteredBookmarks = filteredBookmarks.filter(bookmark => bookmark.rating >= store.filterRating); 
+    if (store.ratingFilter) filteredBookmarks = filteredBookmarks.filter(bookmark => bookmark.rating >= store.ratingFilter); 
     const html = filteredBookmarks.map(generateBookmarkItem);
     $('.bookmark-list').html(html);
     //console.log('render ran');
@@ -97,10 +100,10 @@ const bookmark = (function(){
       $('input[name=star]:checked').val('');
       const data = {title, url, desc, rating};
       store.toggleBookmarkForm();
-      render();
       api.createItem(data, ()=>{
         store.addBookmark(data);
       });
+      render();
     });
   };
 
