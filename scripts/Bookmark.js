@@ -14,7 +14,7 @@ const bookmark = (function(){
     <li data-bookmark-id=${bookmark.id}> 
         <div class="shown-information">
             <p>${bookmark.title}</p>
-            <p>${bookmark.rating}</p>
+            <p>Rating: ${bookmark.rating}</p>
         </div>
         <div class="hidden-information-toggle">
           <input type="checkbox" class="toggle-information">Show Information
