@@ -27,7 +27,7 @@ const bookmark = (function(){
           <button type="button" class="delete">Delete</button>
         </div>
         <div class="edit-button">
-          <button type"button" class="edit">Edit</button>
+          <button type="button" class="edit">Edit</button>
         </div>
     </li>
   </div>`;
@@ -100,10 +100,10 @@ const bookmark = (function(){
       $('input[name=star]:checked').val('');
       const data = {title, url, desc, rating};
       store.toggleBookmarkForm();
+      render();
       api.createItem(data, ()=>{
         store.addBookmark(data);
       });
-      render();
     });
   };
 
@@ -142,6 +142,7 @@ const bookmark = (function(){
       render();
     });
   };
+
 
   const bindEventListeners = function(){
     handleBookmarkFormSubmit();

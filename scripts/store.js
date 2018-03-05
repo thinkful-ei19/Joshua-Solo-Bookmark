@@ -33,7 +33,7 @@ const store = (function () {
     addBookmark,
     //findById,
     findAndDeleteBookmark,
-    toggleRatingFilter
+    toggleRatingFilter,
   };
 
 }());
