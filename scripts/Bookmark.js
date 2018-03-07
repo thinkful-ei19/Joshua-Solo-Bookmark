@@ -39,9 +39,10 @@ const bookmark = (function(){
     } else {
       return `<form id="bookmark-form">
       <button class="js-form-submit" type="submit">Submit Bookmark</button>
-      <input id="title" type="text" name="title-bar" class="js-title-bar" placeholder="Insert Title Here"/>
-      <input id="link" type="text" name="link-bar" class="js-link-bar" placeholder="Insert HyperLink Here"/>
-      <input id="desc" type="text" name="description-bar" class="js-description-bar" placeholder="Insert Description Here"/>
+      <input id="title" type="text" name="title-bar" class="js-title-bar" placeholder="Insert Title Here" aria-required="true"/>
+      <input id="link" type="text" name="link-bar" class="js-link-bar" placeholder="Insert HyperLink Here" aria-required="true"/>
+      <input id="desc" type="text" name="description-bar" class="js-description-bar" placeholder="Insert Description Here" aria-required="true"/>
+      </br>
         <div class="rating-body">  
           <form>
               <input value="5" class="star star-5" id="star-5" type="radio" name="star"/>
@@ -59,19 +60,14 @@ const bookmark = (function(){
   </form>`;}
   };
 
-  //need a decorate response function
-
   const render= function(){
-    //generateHTML
     let filteredBookmarks = store.bookmarks;
     console.log(filteredBookmarks);
     if (store.ratingFilter) filteredBookmarks = filteredBookmarks.filter(bookmark => bookmark.rating >= store.ratingFilter); 
     const html = filteredBookmarks.map(generateBookmarkItem);
     $('.bookmark-list').html(html);
-    //console.log('render ran');
     const formHTML = generateBookmarkForm();
     $('.bookmark-form-target').html(formHTML); 
-    //console.log('render ran');
   };
   
   const handleBookmarkForm = function(){
@@ -159,4 +155,3 @@ const bookmark = (function(){
     generateBookmarkForm
   };
 }());
-console.log('code running');
