@@ -6,11 +6,11 @@ h1{
 .generator-body{
     display: block;
     border: 2px solid black;
-    height: 100%;
     margin-right:auto;
     margin-left:auto;
-    background-color: white;
+    background-color: grey;
     padding: 10px;
+    height: 100%;
 }
 .hidden{
     display: none;
@@ -23,15 +23,14 @@ h1{
     margin-bottom: 10px;
 }
 .results-container{
-    background-color: white;
+    background-color: black;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid white;
     display: block;
-
 }
 
 .bookmark-element{
-    border: 1px solid black;
+    border: 1px dashed black;
     display:inline-block;
     background-color: white;
     padding: 10px;
@@ -42,7 +41,7 @@ h1{
     margin-right: 10px;
 }
 .shown-information{
-    border: 1px solid black;
+    border: 1px solid white;
     width: 100%;
     text-align: center;
     margin-bottom: 1px;
@@ -50,13 +49,13 @@ h1{
     font-style: oblique; 
 }
 .hidden-information{
-    border: 1px solid black;
+    border: 1px solid white;
     width: 85%;
     text-align: center;
     margin-bottom: 1px;
-    font-size: 15px;
+    font-size: 20px;
     padding: 10px;
-    font-style: italic;
+    font-style: oblique;
 }
 
 .hidden-information-toggle{
@@ -71,14 +70,14 @@ h1{
 .delete-button{
     display: block;
     float: right;
-    border: 1px solid black;
+    border: 1px dashed black;
     margin-top: 5px;
 }
 
 .edit-button{
     display: block;
     float: left;
-    border: 1px solid black;
+    border: 1px dashed black;
     margin-top: 5px;
 }
 
@@ -94,19 +93,20 @@ h1{
 .rating-body{
     display: inline-block;
     background-color: white;
-    border: 1px solid black;
+    border: 1px dashed black;
     padding: 10px;
     margin:auto;
     margin-bottom: 10px;
 }
 
 .create-bookmark-button{
-    border: 1px solid black;
+    border: 1px dashed black;
+    background-color: white;
 }
 
 .body-top-half{
-    background-color: white;
-    border: 1px solid black;
+    background-color: black;
+    border: 1px solid white;
     display: block;
     margin-bottom: 10px;
     margin-left: auto;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html a11y eg lang="en">
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="styles/index.css">
     <title>Bookmark App</title>
   </head>
-  <body>
+  <body role="Bookmark-generator">
     <h1>Bookmark App</h1>
-    <div class="generator-body">
-      <div class="body-top-half">
-        <div class="bookmark-form-target">
+    <main role="main" class="generator-body">
+      <section role="top-half-container" class="body-top-half">
+        <section role="create-bookmark-form" class="bookmark-form-target">
            
         
-        </div>
-        <div class="rating-body">
+        </section>
+        <section role="bookmark-rating-filter" class="rating-body">
           <label for="rating-filter">Filter Rating</label>
             <select id="rating-dropdown" name="rating">
               <option value="none">none</option>
@@ -25,14 +25,14 @@
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-        </div>
-      </div>
-        <div class="results-container">
+          </section>
+        </section>
+        <section role="lower-half-container" class="results-container">
             <ul class="bookmark-list">
                 
             </ul>
-        </div>
-    </div>
+          </section>
+      </main>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
