@@ -10,27 +10,24 @@ const bookmark = (function(){
 
   const generateBookmarkItem= function(bookmark){   
 
-    return` <div class="bookmark-element">
+    return` <section role="bookmark-list-item" class="bookmark-element">
     <li data-bookmark-id=${bookmark.id}> 
-        <div class="shown-information">
+        <section class="shown-information">
             <p>${bookmark.title}</p>
             <p>Rating: ${bookmark.rating}</p>
-        </div>
-        <div class="hidden-information-toggle">
+        </section>
+        <section class="hidden-information-toggle">
           <input type="checkbox" class="toggle-information">Show Information
-        </div>
-        <div class="hidden-information hidden">
+        </section>
+        <section role="expandable-information" class="hidden-information hidden">
           <a href="${bookmark.url}" class="bookmark-link">Go To Website</a>
           <p class="bookmark-description">${bookmark.desc}</p>
-        </div>
-        <div class="delete-button">
+        </section>
+        <section class="delete-button">
           <button type="button" class="delete">Delete</button>
-        </div>
-        <div class="edit-button">
-          <button type="button" class="edit">Edit</button>
-        </div>
+        </section>
     </li>
-  </div>`;
+  </section>`;
   };
 
   const generateBookmarkForm = function(){
@@ -43,9 +40,9 @@ const bookmark = (function(){
       <input id="link" type="text" name="link-bar" class="js-link-bar" placeholder="Insert HyperLink Here" aria-required="true"/>
       <input id="desc" type="text" name="description-bar" class="js-description-bar" placeholder="Insert Description Here" aria-required="true"/>
       </br>
-        <div class="rating-body">  
+        <section role="item-rating-body" class="rating-body">  
           <form>
-              <input value="5" class="star star-5" id="star-5" type="radio" name="star"/>
+              <input value="5" class="star star-5" id="star-5" type="radio" name="star" required/>
               <label class="star star-5" for="star-5">5</label>
               <input value="4" class="star star-4" id="star-4" type="radio" name="star"/>
               <label class="star star-4" for="star-4">4</label>
@@ -56,7 +53,7 @@ const bookmark = (function(){
               <input value="1" class="star star-1" id="star-1" type="radio" name="star"/>
               <label class="star star-1" for="star-1">1</label>
           </form>
-        </div>
+        </section>
   </form>`;}
   };
 
@@ -71,12 +68,12 @@ const bookmark = (function(){
   };
   
   const handleBookmarkForm = function(){
-    console.log('function run');
+    //console.log('function run');
     $('.bookmark-form-target').on('click', '.create-bookmark-button', function(event){
       event.preventDefault();
       store.toggleBookmarkForm();
       render();
-      console.log('button clicked');
+      //console.log('button clicked');
     });
   };
 
@@ -84,10 +81,10 @@ const bookmark = (function(){
   const handleBookmarkFormSubmit= function(){
     $('.bookmark-form-target').on('submit','#bookmark-form' , function(event){
       event.preventDefault();
-      console.log('submit button clicked');
+      //console.log('submit button clicked');
       const title = $(event.currentTarget).find('#title').val();
       $(event.currentTarget).find('#title').val('');
-      console.log(title);
+      //console.log(title);
       const url = $(event.currentTarget).find('#link').val();
       $(event.currentTarget).find('#link').val('');
       const desc = $(event.currentTarget).find('#desc').val();
@@ -106,7 +103,7 @@ const bookmark = (function(){
   const expandListElement = function(){
     $('.bookmark-list').on('change', '.toggle-information', function(){
       event.preventDefault();
-      console.log('checkbox clicked');
+      //console.log('checkbox clicked');
       if ($(this).is(':checked')=== true){
         $(this).parents('li').find('.hidden-information').removeClass('hidden');
         $(this).parents('li').find('hidden-information').removeClass('hidden');
@@ -120,9 +117,9 @@ const bookmark = (function(){
 
   const handleDeleteBookmark = function(){
     $('.bookmark-list').on('click', '.delete', function(event){
-      console.log('delete button clicked');
+      //console.log('delete button clicked');
       const id = getIdFromParent(event.currentTarget);
-      console.log(id);
+      //console.log(id);
       api.deleteItem(id, ()=>{
         store.findAndDeleteBookmark(id);
         render();

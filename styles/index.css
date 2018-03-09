@@ -5,10 +5,10 @@ h1{
 
 .generator-body{
     display: block;
-    border: 2px solid black;
+    border: 2px solid grey;
     margin-right:auto;
     margin-left:auto;
-    background-color: grey;
+    background-color: black;
     padding: 10px;
     height: 100%;
 }
@@ -23,14 +23,17 @@ h1{
     margin-bottom: 10px;
 }
 .results-container{
-    background-color: black;
+    background-color: grey;
     width: 100%;
     border: 1px solid white;
     display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
 }
 
 .bookmark-element{
-    border: 1px dashed black;
+    border: 1px solid black;
     display:inline-block;
     background-color: white;
     padding: 10px;
@@ -63,14 +66,14 @@ h1{
     margin-bottom: 5px;
     font-style: italic;
     text-align: center;
-    border: 1px dotted black;
+    border: 1px dashed black;
     padding: 2px;
 }
 
 .delete-button{
     display: block;
     float: right;
-    border: 1px dashed black;
+    border: 1px solid black;
     margin-top: 5px;
 }
 
@@ -93,19 +96,19 @@ h1{
 .rating-body{
     display: inline-block;
     background-color: white;
-    border: 1px dashed black;
+    border: 1px solid black;
     padding: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
 .create-bookmark-button{
-    border: 1px dashed black;
+    border: 1px solid black;
     background-color: white;
 }
 
 .body-top-half{
-    background-color: black;
+    background-color: grey;
     border: 1px solid white;
     display: block;
     margin-bottom: 10px;

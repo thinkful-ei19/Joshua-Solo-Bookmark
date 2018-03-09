@@ -9,7 +9,7 @@ function renderPage(){
     bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
     bookmark.render();
   });
-  console.log('index.js loaded');
+  //console.log('index.js loaded');
 }
 
 $(renderPage);
