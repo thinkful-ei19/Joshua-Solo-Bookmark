@@ -1,11 +1,11 @@
 'use strict';
-/*globals store, api, $*/
+/*globals store, api, $, cuid*/
 //eslint-disable-next-line no-unused-vars
 
 const bookmark = (function(){
 
   const getIdFromParent = function(bookmark){
-    return $(bookmark).parents('li').data('bookmark-id');
+    return $(bookmark).closest('li').data('bookmark-id');
   };
 
   const generateBookmarkItem= function(bookmark){   
@@ -81,6 +81,7 @@ const bookmark = (function(){
   const handleBookmarkFormSubmit= function(){
     $('.bookmark-form-target').on('submit','#bookmark-form' , function(event){
       event.preventDefault();
+      const id = cuid();
       //console.log('submit button clicked');
       const title = $(event.currentTarget).find('#title').val();
       $(event.currentTarget).find('#title').val('');
@@ -91,11 +92,12 @@ const bookmark = (function(){
       $(event.currentTarget).find('#desc').val('');
       const rating = $('input[name=star]:checked').val();
       $('input[name=star]:checked').val('');
-      const data = {title, url, desc, rating};
+      const data = {id, title, url, desc, rating};
       store.toggleBookmarkForm();
-      render();
       api.createItem(data, ()=>{
         store.addBookmark(data);
+        console.log(data);
+        render();
       });
     });
   };
@@ -117,9 +119,9 @@ const bookmark = (function(){
 
   const handleDeleteBookmark = function(){
     $('.bookmark-list').on('click', '.delete', function(event){
-      //console.log('delete button clicked');
+      event.preventDefault();
+      console.log('delete button clicked');
       const id = getIdFromParent(event.currentTarget);
-      //console.log(id);
       api.deleteItem(id, ()=>{
         store.findAndDeleteBookmark(id);
         render();

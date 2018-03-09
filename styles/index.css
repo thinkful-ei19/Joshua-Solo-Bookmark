@@ -24,11 +24,9 @@ h1{
 }
 .results-container{
     background-color: grey;
-    width: 100%;
+    width: 96.55%;
     border: 1px solid white;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+    display: inline-block;
     padding: 20px;
 }
 

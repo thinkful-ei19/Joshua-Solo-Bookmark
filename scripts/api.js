@@ -1,7 +1,6 @@
 'use strict';
-//eslint-next-line-disable no-unused-vars//
 /*globals $*/
-
+//eslint-next-line-disable no-unused-vars//
 const api = (function() {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/josh/bookmarks';
 
@@ -16,9 +15,7 @@ const api = (function() {
       method: 'POST',
       contentType: 'application/json',
       data: newBookmark,
-      success: (callback) => {
-        console.log(callback);
-      }
+      success: callback
     });
   };
 
