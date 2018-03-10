@@ -8,13 +8,10 @@ const store = (function () {
   };
 
   const addBookmark = function (bookmark) {
-    this.bookmarks.push(bookmark);
+    this.bookmarks.unshift(bookmark);
+    console.log(this.bookmarks);
     //toggleBookmarkForm();
   };
-  /*use just the guts in findAndUpdate
-  const findById = function (id) {
-    return this.bookmarks.find(item=>item.id === id);
-  };*/
 
   const findAndDeleteBookmark = function (id) {
     this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
@@ -28,6 +25,7 @@ const store = (function () {
     bookmarks:[],
     addingBookmark: false,
     ratingFilter: null,
+    error: '',
 
     toggleBookmarkForm,
     addBookmark,

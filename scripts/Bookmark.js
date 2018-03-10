@@ -59,7 +59,7 @@ const bookmark = (function(){
 
   const render= function(){
     let filteredBookmarks = store.bookmarks;
-    console.log(filteredBookmarks);
+    //console.log(filteredBookmarks);
     if (store.ratingFilter) filteredBookmarks = filteredBookmarks.filter(bookmark => bookmark.rating >= store.ratingFilter); 
     const html = filteredBookmarks.map(generateBookmarkItem);
     $('.bookmark-list').html(html);
@@ -81,7 +81,6 @@ const bookmark = (function(){
   const handleBookmarkFormSubmit= function(){
     $('.bookmark-form-target').on('submit','#bookmark-form' , function(event){
       event.preventDefault();
-      const id = cuid();
       //console.log('submit button clicked');
       const title = $(event.currentTarget).find('#title').val();
       $(event.currentTarget).find('#title').val('');
@@ -92,13 +91,21 @@ const bookmark = (function(){
       $(event.currentTarget).find('#desc').val('');
       const rating = $('input[name=star]:checked').val();
       $('input[name=star]:checked').val('');
-      const data = {id, title, url, desc, rating};
-      store.toggleBookmarkForm();
-      api.createItem(data, ()=>{
-        store.addBookmark(data);
-        console.log(data);
+      const data = {title, url, desc, rating};
+      
+      const success = (newBookmark) => {
+        store.toggleBookmarkForm();
+        store.addBookmark(newBookmark);
         render();
-      });
+      };
+
+      const error = response => {
+        const message = response.responseJSON.message;
+        store.errorMessage = message;
+        render();
+      };
+
+      api.createItem(data, success, error);
     });
   };
 
@@ -120,7 +127,7 @@ const bookmark = (function(){
   const handleDeleteBookmark = function(){
     $('.bookmark-list').on('click', '.delete', function(event){
       event.preventDefault();
-      console.log('delete button clicked');
+      //console.log('delete button clicked');
       const id = getIdFromParent(event.currentTarget);
       api.deleteItem(id, ()=>{
         store.findAndDeleteBookmark(id);

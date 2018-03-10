@@ -3,7 +3,7 @@
 
 function renderPage(){
   bookmark.bindEventListeners();
-  bookmark.render();
+ //bookmark.render();
 
   api.getItems((bookmarks)=>{
     bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
